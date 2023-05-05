@@ -17,12 +17,12 @@
                 <div class="row">
                     <div class="col">
                         <label class="form-label" for="">Select Services</label>
-                        <select class="form-select" name="" id="selectService">
+                        <select class="form-select" name="" id="selectService" required>
                         </select>
                     </div>
                     <div class="col">
                         <label class="form-label" for="">Input Quantity</label>
-                        <input class="form-control" type="number" id="quantity">
+                        <input class="form-control" type="number" id="quantity" required>
                     </div>
                     <div class="col">
                         <button class="btn btn-lg btn-dark w-100 h-100">
@@ -50,15 +50,21 @@
             <tfoot>
                 <tr>
                     <td class="text-end" colspan="3">SubTotal</td>
-                    <td class="text-end">$ <span>0</span></td>
+                    <td class="text-end">
+                        $ <span id="subTotal">0</span>
+                    </td>
                 </tr>
                 <tr>
                     <td class="text-end" colspan="3">Tax(5%)</td>
-                    <td class="text-end">$ <span>0</span></td>
+                    <td class="text-end">
+                        $ <span id="tax">0</span>
+                    </td>
                 </tr>
                 <tr>
                     <td class="text-end" colspan="3">Total</td>
-                    <td class="text-end">$ <span>0</span></td>
+                    <td class="text-end">
+                        $ <span id="total">0</span>
+                    </td>
                 </tr>
             </tfoot>
         </table>

@@ -29,10 +29,14 @@ const invoiceForm = document.querySelector("#invoiceForm");
 const selectService = document.querySelector("#selectService");
 const quantity = document.querySelector("#quantity");
 const invoiceLists = document.querySelector("#invoiceLists");
+const subTotal = document.querySelector("#subTotal");
+const tax = document.querySelector("#tax");
+const total = document.querySelector("#total");
 
 //function
 const createTr =(service, quantity) => {
     const tr = document.createElement("tr");
+    tr.classList.add("list");
     const total = service.price * quantity;
     tr.innerHTML = `
         <td>${service.title}</td>
@@ -43,18 +47,20 @@ const createTr =(service, quantity) => {
     return tr;
 }
 
-const findTax = (amount, percentage = 5) => {
+const calculatedTax = (amount, percentage = 5) => {
     return amount * (percentage/100);
     
 }
 
 const findTotal = () => {
     const listTotal = document.querySelectorAll(".list-total");
-    let subTotal = [... listTotal].reduce(
+    let subTotalCalculated = [... listTotal].reduce(
         (pv, cv) => pv + parseFloat(cv.innerText),0
         );
-    console.log(subTotal);
-
+    subTotal.innerText = subTotalCalculated;
+    tax.innerText = calculatedTax(subTotalCalculated);
+    total.innerText = subTotal.innerText + tax.innerText ;
+    // console.log(subTotalCalculated);
     }
 
 
