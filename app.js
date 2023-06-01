@@ -18,7 +18,7 @@ const services = [
     },
     {
         id:4,
-        title:"Maintence Service",
+        title:"Maintenance Service",
         price:300
     }
 ]
@@ -33,6 +33,12 @@ const subTotal = document.querySelector("#subTotal");
 const tax = document.querySelector("#tax");
 const total = document.querySelector("#total");
 const listTable = document.querySelector("#listTable");
+const addServiceOpenBtn = document.querySelector("#addServiceOpenBtn");
+const addServiceModal = document.querySelector("#addServiceModal");
+const closeServiceModalBtn = document.querySelector("#closeServiceModalBtn");
+const addServiceForm = document.querySelector("#addServiceForm");
+const sideBar = document.querySelector("#sideBar");
+const menu = document.querySelectorAll(".menu");
 
 //function
 const createTr =(service, quantity) => {
@@ -132,4 +138,44 @@ app.addEventListener("click", event => {
     // console.log(currentElement);
 })
 
+//for Toggle modal box
+addServiceOpenBtn.addEventListener("click", () => {
+    // console.log("addService");
+    addServiceModal.classList.remove("d-none")
+})
 
+closeServiceModalBtn.addEventListener("click",() => {
+    addServiceModal.classList.add("d-none")
+})
+
+addServiceForm.addEventListener("submit",(e) => {
+    e.preventDefault();
+    console.log(e.target);
+    //webAPI FormData constructor
+    const formData = new FormData(e.target);
+    console.log(formData.get("serviceTitle"), formData.get("servicePrice"));
+
+    //add Data to services array
+    const id = Date.now(); //Math.random() လည်း သုံးလို့ရ
+    
+    services.push({
+        id, 
+        title:formData.get("serviceTitle"),
+        price:formData.get("servicePrice")
+
+    });
+
+    // add to option
+    selectService.append(new Option(formData.get("serviceTitle"), id));
+
+
+    //close addServiceModal
+    e.target.reset();
+    addServiceModal.classList.add("d-none");
+})
+
+menu.forEach(el => {
+    el.addEventListener("click",() => {
+        sideBar.classList.toggle("active");
+    })
+})
