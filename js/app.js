@@ -34,11 +34,12 @@ const tax = document.querySelector("#tax");
 const total = document.querySelector("#total");
 const listTable = document.querySelector("#listTable");
 const addServiceOpenBtn = document.querySelector("#addServiceOpenBtn");
-const addServiceModal = document.querySelector("#addServiceModal");
+// const addServiceModal = document.querySelector("#addServiceModal");
 const closeServiceModalBtn = document.querySelector("#closeServiceModalBtn");
 const addServiceForm = document.querySelector("#addServiceForm");
 const sideBar = document.querySelector("#sideBar");
 const menu = document.querySelectorAll(".menu");
+const addServiceModal = new bootstrap.Modal("#addServiceModal");
 
 //function
 const createTr =(service, quantity) => {
@@ -49,7 +50,21 @@ const createTr =(service, quantity) => {
     tr.innerHTML = `
         <td class="d-flex justify-content-between align-items-center">
             ${service.title}
-            <i class="fa-solid fa-trash-can text-danger del-btn"></i>
+
+            <div class="dropdown">
+                <i 
+                    class="fa-solid fa-ellipsis-vertical fa-lg dropdown-icon" 
+                    type="button" data-bs-toggle="dropdown" 
+                    aria-expanded="false">
+                
+                </i>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item del-btn" href="#">Delete</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+            
         </td>
         <td class="text-end list-quantity">${quantity}</td>
         <td class="text-end">${service.price}</td>
@@ -129,8 +144,8 @@ invoiceForm.addEventListener("submit", e => {
 
 app.addEventListener("click", event => {
     const currentElement = event.target;
+    //delete function here
     if(currentElement.classList.contains("del-btn")){
-        //delete function here
         currentElement.closest("tr").remove();
         findTotal();
         showTable();
@@ -139,14 +154,16 @@ app.addEventListener("click", event => {
 })
 
 //for Toggle modal box
-addServiceOpenBtn.addEventListener("click", () => {
+addServiceOpenBtn.addEventListener("dblclick", () => {
     // console.log("addService");
-    addServiceModal.classList.remove("d-none")
+    // addServiceModal.classList.remove("d-none")
+    addServiceModal.show();
+
 })
 
-closeServiceModalBtn.addEventListener("click",() => {
-    addServiceModal.classList.add("d-none")
-})
+// closeServiceModalBtn.addEventListener("click",() => {
+//     addServiceModal.classList.add("d-none")
+// })
 
 addServiceForm.addEventListener("submit",(e) => {
     e.preventDefault();
@@ -171,11 +188,14 @@ addServiceForm.addEventListener("submit",(e) => {
 
     //close addServiceModal
     e.target.reset();
-    addServiceModal.classList.add("d-none");
+    // addServiceModal.classList.add("d-none");
+    addServiceModal.hide();
 })
 
-menu.forEach(el => {
-    el.addEventListener("click",() => {
-        sideBar.classList.toggle("active");
-    })
-})
+
+
+// menu.forEach(el => {
+//     el.addEventListener("click",() => {
+//         sideBar.classList.toggle("active");
+//     })
+// })

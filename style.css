@@ -4,12 +4,12 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.del-btn{
+.dropdown-icon{
     transform: scale(0);
     transition: 0.5s;
 }
 
-tr:hover .del-btn{
+tr:hover .dropdown-icon{
     transform: scale(1);
 }
 
