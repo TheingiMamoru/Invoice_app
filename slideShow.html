@@ -5,10 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/slideStyle.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <input type="file" id="photoUpload" multiple>
+    <input type="file" id="photoUpload" class="d-none" multiple>
+
+    <div class="m-5 p-5 border border-secondary text-center" id="uploaderUI">
+        <h1 class="mb-0">Click to Upload</h1>
+    </div>
+
+    <div id="photos" class="m-5 p-5 border border-dark text-center">
+        <div class="text-center mb-3">
+            <button id="createSlideShow" class="btn btn-dark">Create Slide Show</button>
+        </div>
+    </div>
+
     <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./js/slide.js"></script>
 </body>
