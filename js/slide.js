@@ -76,3 +76,30 @@ createSlideShow.addEventListener("click", () => {
     const allPhoto = [...document.querySelectorAll(".photo")];
     createCarousel(allPhoto.map((el) => el.src));
 })
+
+//Drag Drop API
+uploaderUI.addEventListener("dragover", (event) => {
+  event.preventDefault();
+})
+
+uploaderUI.addEventListener("drop", (event) => {
+  event.preventDefault();
+  console.log(event.dataTransfer.files);
+
+  [...event.dataTransfer.files].forEach((file) => {
+    //Image() ရဲ့ ကိုယ်ပိုင် webAPI ကိုသုံး
+    const img = new Image();
+
+    const reader = new FileReader();
+    reader.addEventListener("load", (event) => {
+    //   console.log(event.target);
+      img.src = event.target.result;
+      img.classList.add("photo", "me-2");
+    //   console.log(img);
+      photos.append(img);
+    });
+    reader.readAsDataURL(file);
+  });
+  
+
+});
